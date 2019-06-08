@@ -86,6 +86,32 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./node_modules/@babel/runtime/helpers/defineProperty.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/defineProperty.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+module.exports = _defineProperty;
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js":
 /*!**************************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js ***!
@@ -195,6 +221,38 @@ function _inheritsLoose(subClass, superClass) {
 }
 
 module.exports = _inheritsLoose;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/objectSpread.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/objectSpread.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var defineProperty = __webpack_require__(/*! ./defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
+
+function _objectSpread(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+    var ownKeys = Object.keys(source);
+
+    if (typeof Object.getOwnPropertySymbols === 'function') {
+      ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(source, sym).enumerable;
+      }));
+    }
+
+    ownKeys.forEach(function (key) {
+      defineProperty(target, key, source[key]);
+    });
+  }
+
+  return target;
+}
+
+module.exports = _objectSpread;
 
 /***/ }),
 
@@ -25324,7 +25382,7 @@ function renderRoutes(routes, extraProps, switchProps) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -30979,6 +31037,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/es/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var ROUTES_Routes__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ROUTES/Routes */ "./src/routes/Routes.js");
+/* harmony import */ var STATE_reducers__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! STATE/reducers */ "./src/client/state/reducers.js");
+
 
 
 
@@ -30990,9 +31050,7 @@ __webpack_require__.r(__webpack_exports__);
 var composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || redux__WEBPACK_IMPORTED_MODULE_4__["compose"];
 var middleware = Object(redux__WEBPACK_IMPORTED_MODULE_4__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_5__["default"]);
 var initState = {};
-var store = Object(redux__WEBPACK_IMPORTED_MODULE_4__["createStore"])(function () {
-  return {};
-}, initState, composeEnhancers(middleware));
+var store = Object(redux__WEBPACK_IMPORTED_MODULE_4__["createStore"])(STATE_reducers__WEBPACK_IMPORTED_MODULE_8__["default"], initState, composeEnhancers(middleware));
 Object(react_dom__WEBPACK_IMPORTED_MODULE_1__["hydrate"])(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_6__["Provider"], {
   store: store
 }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["BrowserRouter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, Object(react_router_config__WEBPACK_IMPORTED_MODULE_3__["renderRoutes"])(ROUTES_Routes__WEBPACK_IMPORTED_MODULE_7__["default"])))), document.querySelector('#app'));
@@ -31016,6 +31074,119 @@ __webpack_require__.r(__webpack_exports__);
     id: "app"
   }, "Home Component");
 });
+
+/***/ }),
+
+/***/ "./src/client/state/Products/actionTypes.js":
+/*!**************************************************!*\
+  !*** ./src/client/state/Products/actionTypes.js ***!
+  \**************************************************/
+/*! exports provided: FETCH_PRODUCTS_SERVER_INIT, FETCH_PRODUCTS_SERVER_SUCCESS, FETCH_PRODUCTS_SERVER_FAILURE */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCH_PRODUCTS_SERVER_INIT", function() { return FETCH_PRODUCTS_SERVER_INIT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCH_PRODUCTS_SERVER_SUCCESS", function() { return FETCH_PRODUCTS_SERVER_SUCCESS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCH_PRODUCTS_SERVER_FAILURE", function() { return FETCH_PRODUCTS_SERVER_FAILURE; });
+/**
+ * FETCHING PRODUCTS SERVER SIDE
+ */
+var FETCH_PRODUCTS_SERVER_INIT = 'CALORIES/FETCH_PRODUCTS_SERVER_INIT';
+var FETCH_PRODUCTS_SERVER_SUCCESS = 'CALORIES/FETCH_PRODUCTS_SERVER_SUCCESS';
+var FETCH_PRODUCTS_SERVER_FAILURE = 'CALORIES/FETCH_PRODUCTS_SERVER_FAILURE';
+
+/***/ }),
+
+/***/ "./src/client/state/Products/constants.js":
+/*!************************************************!*\
+  !*** ./src/client/state/Products/constants.js ***!
+  \************************************************/
+/*! exports provided: NAME, INIT_STATE */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NAME", function() { return NAME; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "INIT_STATE", function() { return INIT_STATE; });
+var NAME = 'Products';
+var INIT_STATE = {
+  error: null,
+  failed: false,
+  initialized: false,
+  products: []
+};
+
+/***/ }),
+
+/***/ "./src/client/state/Products/reducer.js":
+/*!**********************************************!*\
+  !*** ./src/client/state/Products/reducer.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/objectSpread */ "./node_modules/@babel/runtime/helpers/objectSpread.js");
+/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var STATE_Products_actionTypes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! STATE/Products/actionTypes */ "./src/client/state/Products/actionTypes.js");
+/* harmony import */ var STATE_Products_constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! STATE/Products/constants */ "./src/client/state/Products/constants.js");
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : STATE_Products_constants__WEBPACK_IMPORTED_MODULE_2__["INIT_STATE"];
+
+  var _ref = arguments.length > 1 ? arguments[1] : undefined,
+      type = _ref.type,
+      payload = _ref.payload,
+      error = _ref.error;
+
+  switch (type) {
+    case STATE_Products_actionTypes__WEBPACK_IMPORTED_MODULE_1__["FETCH_PRODUCTS_SERVER_INIT"]:
+      return _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, state, {
+        initialized: true
+      });
+
+    case STATE_Products_actionTypes__WEBPACK_IMPORTED_MODULE_1__["FETCH_PRODUCTS_SERVER_FAILURE"]:
+      return _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, state, {
+        error: error,
+        failed: true
+      });
+
+    case STATE_Products_actionTypes__WEBPACK_IMPORTED_MODULE_1__["FETCH_PRODUCTS_SERVER_SUCCESS"]:
+      return _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, state, {
+        failed: false,
+        products: payload
+      });
+
+    default:
+      return state;
+  }
+});
+
+/***/ }),
+
+/***/ "./src/client/state/reducers.js":
+/*!**************************************!*\
+  !*** ./src/client/state/reducers.js ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var STATE_Products_constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! STATE/Products/constants */ "./src/client/state/Products/constants.js");
+/* harmony import */ var STATE_Products_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! STATE/Products/reducer */ "./src/client/state/Products/reducer.js");
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_1__["combineReducers"])(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()({}, STATE_Products_constants__WEBPACK_IMPORTED_MODULE_2__["NAME"], STATE_Products_reducer__WEBPACK_IMPORTED_MODULE_3__["default"])));
 
 /***/ }),
 
