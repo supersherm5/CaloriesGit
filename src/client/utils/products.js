@@ -2,7 +2,7 @@
  * Placeholder for API data
  */
 
-export const products = [
+const products = [
   {
     description: 'A refreshing orange beverage.',
     caffeinePerServing: 75,
@@ -34,3 +34,5 @@ export const products = [
     servings: 1,
   },
 ];
+
+export default products;

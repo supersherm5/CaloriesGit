@@ -1,7 +1,17 @@
 import React from 'react';
+import TitleBar from 'COMPONENTS/TitleBar';
+import CalorieIntakeForm, { loadData } from 'COMPONENTS/CalorieIntakeForm';
 
-export default () => {
+const Home = () => {
   return (
-    <div id="app">Home Component</div>
+    <div>
+      <TitleBar />
+      <CalorieIntakeForm />
+    </div>
   );
+};
+
+export default {
+  component: Home,
+  loadData,
 };

@@ -5,7 +5,7 @@ import {
   FETCH_PRODUCTS_SERVER_FAILURE,
 } from 'STATE/Products/actionTypes';
 
-import { products } from 'CLIENT_UTILS/products';
+import products from 'CLIENT_UTILS/products';
 
 export const fetchProductsInit = () => ({
   type: FETCH_PRODUCTS_SERVER_INIT,
