@@ -5,9 +5,12 @@
   "author": "Sherm Newsom <sherm.newsom@gmail.com>",
   "license": "MIT",
   "private": true,
+  "engines": {
+    "yarn": "1.16"
+  },
   "scripts": {
     "clean": "rm -rf node_modules build",
-    "dev": "npm-run-all --parallel dev:*",
+    "start": "npm-run-all --parallel dev:*",
     "dev:build-server": "webpack --config .webpack/webpack.server.js --watch",
     "dev:build-client": "webpack --config .webpack/webpack.client.js --watch",
     "dev:run-server": "nodemon build/bundle.js --inspect=5858",
