@@ -5,7 +5,7 @@ import Routes from 'ROUTES/Routes';
 import { matchRoutes } from 'react-router-config';
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 app.use(express.static('public'));
 
