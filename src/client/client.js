@@ -1,7 +1,23 @@
 import React from 'react';
 import { hydrate } from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+import { renderRoutes } from 'react-router-config';
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
+import { Provider } from 'react-redux';
 
-import Home from 'COMPONENTS/Home';
+import Routes from 'ROUTES/Routes';
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const middleware = applyMiddleware(
+  thunk,
+);
+const initState = {};
+const store = createStore(() => ({}), initState, composeEnhancers(middleware));
 
-hydrate(<Home />, document.querySelector('#app'));
+hydrate(
+  <Provider store={store}>
+    <BrowserRouter>
+      <div>{renderRoutes(Routes)}</div>
+    </BrowserRouter>
+  </Provider>, document.querySelector('#app'));

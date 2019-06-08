@@ -1,7 +1,6 @@
 import express from 'express';
-import React from 'react';
-import { renderToString } from 'react-dom/server';
-import Home from 'COMPONENTS/Home';
+import renderer from 'SERVER_UTILS/renderer';
+import createStore from 'SERVER_UTILS/createStore';
 
 const app = express();
 const PORT = 5000;
@@ -9,8 +8,9 @@ const PORT = 5000;
 app.use(express.static('public'));
 
 app.get('*', (req, res) => {
+  const store = createStore();
 
-  res.send(renderToString(<Home />));
+  res.send(renderer(req, store));
 });
 
 app.listen(PORT, () => {
