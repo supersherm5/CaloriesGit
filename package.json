@@ -9,12 +9,14 @@
     "yarn": "1.16"
   },
   "scripts": {
+    "build-client": "webpack --config .webpack/webpack.client.js",
+    "build-server": "webpack --config .webpack/webpack.server.js",
     "clean": "rm -rf node_modules build",
     "dev": "npm-run-all --parallel dev:*",
     "dev:build-server": "webpack --config .webpack/webpack.server.js --watch",
     "dev:build-client": "webpack --config .webpack/webpack.client.js --watch",
     "dev:run-server": "nodemon build/bundle.js --inspect=5858",
-    "heroku-postbuild": "yarn dev:build-server && yarn dev:build-client",
+    "heroku-postbuild": "yarn build-server && yarn build-client",
     "start": "nodemon build/bundle.js",
     "kill": "pkill -9 node"
   },
