@@ -7,13 +7,14 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 
 import Routes from 'ROUTES/Routes';
+import reducers from 'STATE/reducers';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const middleware = applyMiddleware(
   thunk,
 );
 const initState = {};
-const store = createStore(() => ({}), initState, composeEnhancers(middleware));
+const store = createStore(reducers, initState, composeEnhancers(middleware));
 
 hydrate(
   <Provider store={store}>
