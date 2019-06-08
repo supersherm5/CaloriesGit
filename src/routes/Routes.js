@@ -5,7 +5,7 @@ import Home from 'COMPONENTS/Home';
 export default [
   {
     path: '/',
-    component: Home,
+    ...Home,
     exact: true,
   },
 ];
