@@ -13,8 +13,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const middleware = applyMiddleware(
   thunk,
 );
-const initState = {};
-const store = createStore(reducers, initState, composeEnhancers(middleware));
+const store = createStore(reducers, window.INITIAL_STATE, composeEnhancers(middleware));
 
 hydrate(
   <Provider store={store}>
