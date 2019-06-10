@@ -3,6 +3,7 @@ import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
 import { Provider } from 'react-redux';
+import serialize from 'serialize-javascript';
 
 import Routes from 'ROUTES/Routes';
 
@@ -22,7 +23,7 @@ export default (req, store) => {
         <meta charset="UTF-8">
         <title>Calories</title>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" />
-        <script>window.INITIAL_STATE = ${JSON.stringify(store.getState())}</script>
+        <script>window.INITIAL_STATE = ${serialize(store.getState())}</script>
       </head>
       <body>
         <div id="app">${content}</div>
