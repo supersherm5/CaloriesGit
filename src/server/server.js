@@ -14,19 +14,10 @@ app.get('/', (req, res) => {
   const promises = matchRoutes(Routes, req.path)
     .map(({ route }) => {
       return route.loadData ? route.loadData(store) : null;
-    })
-    .map(promise => {
-      if (promise) {
-        return new Promise((resolve, reject) => {
-          promise.then(resolve).catch(resolve);
-        });
-      }
     });
 
   Promise.all(promises).then((data) => {
-    console.log('data = ', data);
     const content = renderer(req, store);
-
     res.send(content);
   });
 });
