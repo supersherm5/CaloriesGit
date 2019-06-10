@@ -1,5 +1,6 @@
 /* eslint-disable newline-per-chained-call */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   Select,
   MenuItem,
@@ -11,7 +12,6 @@ import {
 } from '@material-ui/core';
 import Joi from '@hapi/joi';
 import { fillLeftover } from 'CLIENT_UTILS/fillLeftovers';
-import products from 'CLIENT_UTILS/products';
 import Paper from 'COMPONENTS/Paper';
 
 
@@ -31,7 +31,6 @@ export default class CalorieIntakeForm extends Component {
     calorieIntakeErrMsg: '',
     leftOver: [],
     msgBad: 'You have exceeded your limit!!!',
-    products,
     selectedIndex: 99,
     showMsg: false,
     numOfContainers: 0,
@@ -154,7 +153,6 @@ export default class CalorieIntakeForm extends Component {
       calorieIntake,
       calorieIntakeErr,
       calorieIntakeErrMsg,
-      products,
       selectedIndex,
       numOfContainers,
       numOfContainersErr,
@@ -163,7 +161,9 @@ export default class CalorieIntakeForm extends Component {
       showMsg,
     } = this.state;
 
-
+    const {
+      getProducts,
+    } = this.props;
     return (
       <div style={{
         margin: '15px',
@@ -195,7 +195,7 @@ export default class CalorieIntakeForm extends Component {
             >
               <MenuItem value={99}>- Select Beverage -</MenuItem>
               {
-                products.map(({ name }, i) => {
+                getProducts.map(({ name }, i) => {
                   return <MenuItem key={name} value={i + 1}>{name}</MenuItem>;
                 })
               }
@@ -233,3 +233,10 @@ export default class CalorieIntakeForm extends Component {
     );
   }
 }
+
+CalorieIntakeForm.propTypes = {
+  getProducts: PropTypes.array,
+};
+CalorieIntakeForm.defaultProps = {
+  getProducts: [],
+};
