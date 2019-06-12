@@ -15,7 +15,7 @@
     "dev": "npm-run-all --parallel dev:*",
     "dev:build-server": "webpack --config .webpack/webpack.server.js --watch",
     "dev:build-client": "webpack --config .webpack/webpack.client.js --watch",
-    "dev:run-server": "nodemon build/bundle.js --inspect=5858",
+    "dev:run-server": "NODE_ENV=production nodemon build/bundle.js --inspect=5858",
     "heroku-postbuild": "yarn build-server && yarn build-client",
     "start": "nodemon build/bundle.js",
     "kill": "pkill -9 node",
@@ -69,6 +69,8 @@
     "jest-cli": "^24.8.0",
     "npm-run-all": "^4.1.5",
     "redux-mock-store": "^1.5.3",
+    "uglifyjs-webpack-plugin": "^2.1.3",
+    "webpack-bundle-analyzer": "^3.3.2",
     "webpack-cli": "^3.3.2",
     "webpack-merge": "^4.2.1",
     "webpack-node-externals": "^1.7.2"

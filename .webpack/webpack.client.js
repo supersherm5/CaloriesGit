@@ -3,7 +3,6 @@ const merge = require('webpack-merge');
 const baseConfig = require('./webpack.base');
 
 const config = {
-  mode: 'development',
   target: 'web',
   devtool: 'source-map',
 
