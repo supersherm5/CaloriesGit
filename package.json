@@ -42,7 +42,7 @@
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
     "serialize-javascript": "^1.7.0",
-    "webpack": "^4.33.0"
+    "webpack": "^4.43.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
